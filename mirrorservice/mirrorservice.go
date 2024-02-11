@@ -73,7 +73,7 @@ func RefreshIfNecessary(client *http.Client, cacheDirectory, url string) (string
 		}
 	}
 
-	if time.Since(stat.ModTime()) > 24*time.Hour {
+	if time.Since(stat.ModTime()) > 1*time.Hour {
 		return FetchAvailableMirrors(client, cacheDirectory, url)
 	}
 

@@ -14,7 +14,7 @@ import (
 var generateCmd = &cobra.Command{
 	Use:   "generate",
 	Short: "Generates a mirror list",
-	Long:  `Fetches available mirrors and generates a mirror list. Available mirrors are cached for 24 hours.`,
+	Long:  `Fetches available mirrors and generates a mirror list. Available mirrors are cached for 1 hour.`,
 	Run: func(cmd *cobra.Command, _ []string) {
 		url, _ := cmd.Flags().GetString("url")
 

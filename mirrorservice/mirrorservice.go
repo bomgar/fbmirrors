@@ -21,6 +21,10 @@ func download(client *http.Client, url string, w io.Writer) error {
 
 	defer response.Body.Close()
 
+	if response.StatusCode != http.StatusOK {
+		return fmt.Errorf("fetch available mirrors: status code: %d", response.StatusCode)
+	}
+
 	_, err = io.Copy(w, response.Body)
 	if err != nil {
 		return fmt.Errorf("fetch available mirrors: %w", err)

@@ -33,6 +33,17 @@ type Mirror struct {
 	IPv6           bool      `json:"ipv6"`
 }
 
+func (m *MirrorList) GetCountries() map[string]string {
+	countries := make(map[string]string)
+	for _, mirror := range m.Mirrors {
+		if mirror.CountryCode == "" {
+			continue
+		}
+		countries[mirror.Country] = mirror.CountryCode
+	}
+	return countries
+}
+
 func LoadMirrorList(filepath string) (*MirrorList, error) {
 	file, err := os.Open(filepath)
 	if err != nil {

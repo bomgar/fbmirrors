@@ -11,9 +11,15 @@ import (
 
 type GenerateOptions struct {
 	CountryCode string
-	IpVersion   []string
+	IpVersion   string
 	Protocols   []string
 }
+
+const (
+	Ipv4 = "IPv4"
+	Ipv6 = "IPv6"
+	Both = "both"
+)
 
 func GetGenerateOptions(mirrorList *mirrorlist.MirrorList) (GenerateOptions, error) {
 
@@ -29,11 +35,12 @@ func GetGenerateOptions(mirrorList *mirrorlist.MirrorList) (GenerateOptions, err
 				Value(&options.CountryCode),
 		),
 		huh.NewGroup(
-			huh.NewMultiSelect[string]().
+			huh.NewSelect[string]().
 				Title("IP version").
 				Options(
-					huh.NewOption("IPv4", "IPv4").Selected(true),
-					huh.NewOption("IPv6", "IPv6").Selected(true),
+					huh.NewOption("Both", Both),
+					huh.NewOption("IPv4", Ipv4),
+					huh.NewOption("IPv6", Ipv6),
 				).
 				Value(&options.IpVersion),
 			huh.NewMultiSelect[string]().

@@ -9,7 +9,7 @@ import (
 
 type MirrorList struct {
 	LastCheck      time.Time `json:"last_check"`
-	Mirrors           []Mirror  `json:"urls"`
+	Mirrors        []Mirror  `json:"urls"`
 	Cutoff         int64     `json:"cutoff"`
 	NumChecks      int       `json:"num_checks"`
 	CheckFrequency int       `json:"check_frequency"`

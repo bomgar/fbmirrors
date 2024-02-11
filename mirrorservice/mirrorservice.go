@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func download(client *http.Client, url string, w io.Writer) error {
@@ -49,6 +50,27 @@ func FetchAvailableMirrors(client *http.Client, cacheDirectory, url string) (str
 	err = download(client, url, file)
 	if err != nil {
 		return "", fmt.Errorf("fetch available mirrors: %w", err)
+	}
+
+	return cacheFile, nil
+}
+
+func RefreshIfNecessary(client *http.Client, cacheDirectory, url string) (string, error) {
+
+	fbmirrorsCacheDir := filepath.Join(cacheDirectory, "fbmirros")
+	cacheFile := filepath.Join(fbmirrorsCacheDir, "mirrors.json")
+
+	stat, err := os.Stat(cacheFile)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return FetchAvailableMirrors(client, cacheDirectory, url)
+		} else {
+			return "", fmt.Errorf("fetch available mirrors: %w", err)
+		}
+	}
+
+	if time.Since(stat.ModTime()) > 24*time.Hour {
+		return FetchAvailableMirrors(client, cacheDirectory, url)
 	}
 
 	return cacheFile, nil

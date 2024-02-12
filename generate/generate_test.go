@@ -3,6 +3,7 @@ package generate
 import (
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/bomgar/fbmirrors/form"
 	"github.com/bomgar/fbmirrors/mirrorlist"
@@ -10,7 +11,11 @@ import (
 )
 
 func TestFilterMirrors(t *testing.T) {
+    score := 1.0
+    lastSync := time.Now()
 	mirror1 := mirrorlist.Mirror{
+        LastSync: &lastSync,
+        Score:      &score,
 		Active:      true,
 		CountryCode: "US",
 		Protocol:    "https",
@@ -18,6 +23,8 @@ func TestFilterMirrors(t *testing.T) {
 		IPv6:        false,
 	}
 	mirror2 := mirrorlist.Mirror{
+        LastSync: &lastSync,
+        Score:      &score,
 		Active:      true,
 		CountryCode: "DE",
 		Protocol:    "https",
@@ -25,6 +32,8 @@ func TestFilterMirrors(t *testing.T) {
 		IPv6:        false,
 	}
 	mirror3 := mirrorlist.Mirror{
+        LastSync: &lastSync,
+        Score:      &score,
 		Active:      true,
 		CountryCode: "US",
 		Protocol:    "https",
@@ -32,6 +41,8 @@ func TestFilterMirrors(t *testing.T) {
 		IPv6:        true,
 	}
 	mirror4 := mirrorlist.Mirror{
+        LastSync: &lastSync,
+        Score:      &score,
 		Active:      true,
 		CountryCode: "US",
 		Protocol:    "rsync",

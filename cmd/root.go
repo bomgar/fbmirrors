@@ -8,8 +8,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "fbmirrors",
-	Short: "Arch mirrir list tool",
-	Long:  `TODO: description`,
+	Short: "Arch mirror list tool",
+	Long:  `Interactivly create arch mirror lists.`,
 }
 
 func Execute() {

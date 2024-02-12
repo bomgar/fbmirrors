@@ -42,12 +42,12 @@ func filterMirrors(mirrorList []mirrorlist.Mirror, options form.GenerateOptions)
 	mirrors := []mirrorlist.Mirror{}
 
 	for _, mirror := range mirrorList {
-        if mirror.Score == nil {
-            continue
-        }
-        if mirror.LastSync == nil {
-            continue
-        }
+		if mirror.Score == nil {
+			continue
+		}
+		if mirror.LastSync == nil {
+			continue
+		}
 		if !mirror.Active {
 			continue
 		}

@@ -1,9 +1,9 @@
-# fbmirror
+# fbmirrors
 
 A tool to generate the arch mirrorlist.
 
 
 
 ```bash
-fbmirror generate
+fbmirrors generate
 ```

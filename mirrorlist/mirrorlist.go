@@ -16,21 +16,21 @@ type MirrorList struct {
 }
 
 type Mirror struct {
-	LastSync       time.Time `json:"last_sync"`
-	Country        string    `json:"country"`
-	Protocol       string    `json:"protocol"`
-	URL            string    `json:"url"`
-	Details        string    `json:"details"`
-	CountryCode    string    `json:"country_code"`
-	CompletionPct  float64   `json:"completion_pct"`
-	Score          float64   `json:"score"`
-	DurationStddev float64   `json:"duration_stddev"`
-	DurationAvg    float64   `json:"duration_avg"`
-	Delay          int       `json:"delay"`
-	Active         bool      `json:"active"`
-	Isos           bool      `json:"isos"`
-	IPv4           bool      `json:"ipv4"`
-	IPv6           bool      `json:"ipv6"`
+	Score          *float64   `json:"score"`
+	LastSync       *time.Time `json:"last_sync"`
+	Country        string     `json:"country"`
+	Protocol       string     `json:"protocol"`
+	URL            string     `json:"url"`
+	Details        string     `json:"details"`
+	CountryCode    string     `json:"country_code"`
+	CompletionPct  float64    `json:"completion_pct"`
+	DurationStddev float64    `json:"duration_stddev"`
+	DurationAvg    float64    `json:"duration_avg"`
+	Delay          int        `json:"delay"`
+	Active         bool       `json:"active"`
+	Isos           bool       `json:"isos"`
+	IPv4           bool       `json:"ipv4"`
+	IPv6           bool       `json:"ipv6"`
 }
 
 func (m *MirrorList) GetCountries() map[string]string {

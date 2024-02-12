@@ -13,7 +13,7 @@ func SelectMirrors(mirrors []mirrorlist.Mirror) ([]mirrorlist.Mirror, error) {
 
 	for _, mirror := range mirrors {
 		mirrorOptions = append(mirrorOptions, huh.NewOption(
-			fmt.Sprintf("%s (score: %f, last_synced: %v)", mirror.URL, mirror.Score, mirror.LastSync),
+			fmt.Sprintf("%s (score: %f, last_synced: %v)", mirror.URL, *mirror.Score, *mirror.LastSync),
 			mirror,
 		))
 	}

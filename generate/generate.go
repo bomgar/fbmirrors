@@ -15,7 +15,7 @@ func Generate(mirrorList *mirrorlist.MirrorList) error {
 		return fmt.Errorf("generate: %w", err)
 	}
 
-	filteredMirrors := filterMirrors(mirrorList, options)
+	filteredMirrors := filterMirrors(mirrorList.Mirrors, options)
 
 	slices.SortFunc(filteredMirrors, func(a, b mirrorlist.Mirror) int {
 		return cmp.Compare(b.Score, a.Score)
@@ -26,15 +26,22 @@ func Generate(mirrorList *mirrorlist.MirrorList) error {
 		return fmt.Errorf("generate: %w", err)
 	}
 
-	fmt.Println(selectedMirrors)
+	printMirrors(selectedMirrors)
 
 	return nil
 }
 
-func filterMirrors(mirrorList *mirrorlist.MirrorList, options form.GenerateOptions) []mirrorlist.Mirror {
+func printMirrors(mirrors []mirrorlist.Mirror) {
+	for _, mirror := range mirrors {
+		fmt.Printf("## country=%s score=%f last_sync=%s ipv4=%v ipv6=%v\n", mirror.Country, mirror.Score, mirror.LastSync, mirror.IPv4, mirror.IPv6)
+		fmt.Printf("Server = %s$repo/os/$arch\n", mirror.URL)
+	}
+}
+
+func filterMirrors(mirrorList []mirrorlist.Mirror, options form.GenerateOptions) []mirrorlist.Mirror {
 	mirrors := []mirrorlist.Mirror{}
 
-	for _, mirror := range mirrorList.Mirrors {
+	for _, mirror := range mirrorList {
 		if !mirror.Active {
 			continue
 		}
@@ -52,10 +59,6 @@ func filterMirrors(mirrorList *mirrorlist.MirrorList, options form.GenerateOptio
 		}
 
 		if options.IpVersion == form.Ipv6 && !mirror.IPv6 {
-			continue
-		}
-
-		if !slices.Contains(options.Protocols, mirror.Protocol) {
 			continue
 		}
 

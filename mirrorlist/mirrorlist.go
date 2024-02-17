@@ -44,6 +44,10 @@ func (m *MirrorList) GetCountries() map[string]string {
 	return countries
 }
 
+func (m Mirror) PlaceHolderUrl() string {
+	return fmt.Sprintf("%s$repo/os/$arch", m.URL)
+}
+
 func LoadMirrorList(filepath string) (*MirrorList, error) {
 	file, err := os.Open(filepath)
 	if err != nil {

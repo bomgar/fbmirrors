@@ -33,8 +33,7 @@ func Generate(mirrorList *mirrorlist.MirrorList) error {
 
 func printMirrors(mirrors []mirrorlist.Mirror) {
 	for _, mirror := range mirrors {
-		fmt.Printf("## country=%s score=%f last_sync=%s ipv4=%v ipv6=%v\n", mirror.Country, *mirror.Score, *mirror.LastSync, mirror.IPv4, mirror.IPv6)
-		fmt.Printf("Server = %s$repo/os/$arch\n", mirror.URL)
+		fmt.Printf("Server = %s\n", mirror.PlaceHolderUrl())
 	}
 }
 

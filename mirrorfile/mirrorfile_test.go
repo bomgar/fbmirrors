@@ -17,5 +17,9 @@ func TestParseContent(t *testing.T) {
 
 	require.Equal(t, 6, len(mirrors))
 	require.Contains(t, mirrors, MirrorEntry("https://archlinux.thaller.ws/$repo/os/$arch"))
+}
 
+func TestTargetUrl(t *testing.T) {
+	mirror := MirrorEntry("https://archlinux.thaller.ws/$repo/os/$arch")
+	require.Equal(t, "https://archlinux.thaller.ws/extra/os/x86_64/extra.db", mirror.TargetUrl())
 }

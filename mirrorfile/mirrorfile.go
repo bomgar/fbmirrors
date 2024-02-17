@@ -9,6 +9,14 @@ import (
 
 type MirrorEntry string
 
+func (m MirrorEntry) TargetUrl() string {
+	url := strings.ReplaceAll(string(m), "$repo", "extra")
+	url = strings.ReplaceAll(url, "$arch", "x86_64")
+	url = url + "/extra.db"
+
+	return url
+}
+
 func parseContent(reader io.Reader) ([]MirrorEntry, error) {
 	mirrors := []MirrorEntry{}
 	scanner := bufio.NewScanner(reader)

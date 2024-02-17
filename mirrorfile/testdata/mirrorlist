@@ -1,0 +1,17 @@
+# vim: filetype=sh
+# asdjflkasdjfkl
+X = Y
+
+#sdfjskdjfs
+## country=Germany score=0.591241 last_sync=2024-02-12 14:51:59 +0000 UTC ipv4=true ipv6=true
+Server = https://archlinux.thaller.ws/$repo/os/$arch
+## country=Germany score=0.623583 last_sync=2024-02-12 14:52:01 +0000 UTC ipv4=true ipv6=true
+Server = https://mirror.f4st.host/archlinux/$repo/os/$arch
+## country=Germany score=0.636422 last_sync=2024-02-12 14:51:01 +0000 UTC ipv4=true ipv6=true
+Server = https://mirror.sunred.org/archlinux/$repo/os/$arch
+## country=Germany score=0.750871 last_sync=2024-02-12 14:50:25 +0000 UTC ipv4=true ipv6=true
+Server = https://de.arch.mirror.kescher.at/$repo/os/$arch
+## country=Germany score=0.855792 last_sync=2024-02-12 14:50:25 +0000 UTC ipv4=true ipv6=true
+Server = https://ftp.halifax.rwth-aachen.de/archlinux/$repo/os/$arch
+## country=Germany score=0.870387 last_sync=2024-02-12 14:50:09 +0000 UTC ipv4=true ipv6=true
+Server = https://mirror.ubrco.de/archlinux/$repo/os/$arch

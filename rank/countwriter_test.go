@@ -19,8 +19,8 @@ func (t TargetUrl) TargetUrl() string {
 func TestMeasureDownloadSpeed(t *testing.T) {
 
 	testHttpServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
-        _, err := io.WriteString(w, "Hello, world!")
-        assert.NoError(t, err)
+		_, err := io.WriteString(w, "Hello, world!")
+		assert.NoError(t, err)
 	}))
 	defer testHttpServer.Close()
 
@@ -43,8 +43,8 @@ func TestMeasureDownloadSpeedHttpError(t *testing.T) {
 
 func TestMeasureTargets(t *testing.T) {
 	testHttpServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
-        _, err := io.WriteString(w, "Hello, world!")
-        assert.NoError(t, err)
+		_, err := io.WriteString(w, "Hello, world!")
+		assert.NoError(t, err)
 	}))
 	defer testHttpServer.Close()
 

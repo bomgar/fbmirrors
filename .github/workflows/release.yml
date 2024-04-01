@@ -23,7 +23,7 @@ jobs:
           VERSION=${TAG_NAME#v}
           go build -o fbmirrors -ldflags="-X main.version=$VERSION" main.go
       - id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             fbmirrors

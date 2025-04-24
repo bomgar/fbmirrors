@@ -19,7 +19,7 @@ func download(client *http.Client, url string, w io.Writer) error {
 		return fmt.Errorf("fetch available mirrors: %w", err)
 	}
 
-	defer response.Body.Close()
+	defer response.Body.Close() //nolint:errcheck
 
 	if response.StatusCode != http.StatusOK {
 		return fmt.Errorf("fetch available mirrors: status code: %d", response.StatusCode)
@@ -49,7 +49,7 @@ func FetchAvailableMirrors(client *http.Client, cacheDirectory, url string) (str
 	if err != nil {
 		return "", fmt.Errorf("fetch available mirrors: %w", err)
 	}
-	defer file.Close()
+	defer file.Close() //nolint:errcheck
 
 	err = download(client, url, file)
 	if err != nil {

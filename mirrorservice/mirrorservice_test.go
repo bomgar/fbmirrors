@@ -18,7 +18,8 @@ func TestFetchAvailableMirrors(t *testing.T) {
 	data := `{"mock": "data"}`
 
 	mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
-		fmt.Fprint(w, data)
+		_, err := fmt.Fprint(w, data);
+		require.NoError(t, err)
 	}))
 	defer mockServer.Close()
 
@@ -32,7 +33,7 @@ func TestFetchAvailableMirrors(t *testing.T) {
 
 	require.Equal(t, data, content)
 
-	defer os.RemoveAll(tempDir)
+	defer os.RemoveAll(tempDir) //nolint:errcheck
 }
 
 func TestRefresh(t *testing.T) {
@@ -44,7 +45,8 @@ func TestRefresh(t *testing.T) {
 	var requestCount int32
 	mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		atomic.AddInt32(&requestCount, 1)
-		fmt.Fprint(w, data)
+		_, err := fmt.Fprint(w, data)
+		require.NoError(t, err)
 	}))
 
 	defer mockServer.Close()
@@ -57,5 +59,5 @@ func TestRefresh(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, int32(1), requestCount)
 
-	defer os.RemoveAll(tempDir)
+	defer os.RemoveAll(tempDir) //nolint:errcheck
 }

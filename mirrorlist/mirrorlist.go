@@ -53,7 +53,7 @@ func LoadMirrorList(filepath string) (*MirrorList, error) {
 	if err != nil {
 		return nil, fmt.Errorf("load mirror list: %w", err)
 	}
-	defer file.Close()
+	defer file.Close() //nolint:errcheck
 
 	decoder := json.NewDecoder(file)
 	mirrorList := &MirrorList{}

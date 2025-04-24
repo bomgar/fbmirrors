@@ -42,7 +42,7 @@ func measureDownloadSpeed(client *http.Client, url string) (float64, error) {
 	if err != nil {
 		return 0, fmt.Errorf("measure download speed: %w", err)
 	}
-	defer response.Body.Close()
+	defer response.Body.Close() //nolint:errcheck
 
 	if response.StatusCode != http.StatusOK {
 		return 0, fmt.Errorf("measure download speed: status code: %d", response.StatusCode)

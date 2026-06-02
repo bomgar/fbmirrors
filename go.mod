@@ -3,7 +3,7 @@ module github.com/bomgar/fbmirrors
 go 1.24.2
 
 require (
-	github.com/charmbracelet/huh v0.8.0
+	github.com/charmbracelet/huh v1.0.0
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.11.1
 )
